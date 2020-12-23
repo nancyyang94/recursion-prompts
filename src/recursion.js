@@ -52,10 +52,42 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  if (array.length === 0) {
+    return 0;
+  }
+
+  // if there is one and only one number left in the array, return that number
+  if (Array.isArray(array) === true && array.length === 1) {
+    return parseInt(array[0]);
+  }
+
+  // if the current element a number just return that number
+  if (typeof array === 'number') {
+    return parseInt(array);
+  }
+  // if the first item in our input is NOT an array
+    // slice it then recurse
+
+  return parseInt(arraySum(array[0]) + arraySum(array.slice(1)));
+
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  if (n < 0) {
+    n = Math.abs(n);
+  }
+
+  if (n === 0) {
+    return true;
+  }
+
+  if (n === 1) {
+    return false;
+  }
+
+   return isEven(n-2);
+
 };
 
 // 5. Sum all integers below a given integer.
