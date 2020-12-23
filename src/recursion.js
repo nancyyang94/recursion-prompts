@@ -178,12 +178,19 @@ var powerOfTwo = function(n) {
     return false;
   }
 
+  // recursive case
   return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
-};
+  if (string.length === 1) {
+    return string;
+  }
+
+  return (string.charAt(string.length - 1)).concat(reverse(string.slice(0, string.length - 1)));
+
+}
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
