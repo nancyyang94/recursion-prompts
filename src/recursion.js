@@ -144,7 +144,6 @@ var exponent = function(base, exp) {
     return y * y;
   }
 
-
   // if exp is positive and odd
   if (exp > 0 && (exp % 2 === 1)) {
   return base * exponent(base, exp - 1);
@@ -170,11 +169,7 @@ var powerOfTwo = function(n) {
     return true;
   }
 
-  if (n === 0) {
-    return false;
-  }
-
-  if (n % 2 === 1) {
+  if (n === 0 || n % 2 === 1) {
     return false;
   }
 
@@ -194,6 +189,22 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  string = string.toLowerCase();
+
+  if (string[0] !== string[string.length - 1]) {
+    return false;
+  }
+
+  if (string.length === 2 && string[0] === string[string.length - 1]) {
+    return true;
+  }
+  if (string.length === 1) {
+    return true;
+  }
+
+  // recursive case:
+  var newString = string.slice(1, string.length - 1);
+  return palindrome(newString);
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
