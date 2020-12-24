@@ -117,12 +117,31 @@ var range = function(x, y) {
   // input: two integers (x, y)
   // output: an array of all integers within that range (NOT INCLUDING the min and max)
   var result = [];
-  // base case
 
-  // recursive case
+  if (x === y) {
+    return [];
+  }
+  if (x + 1 === y) {
+    return [];
+  }
 
+  if (x - 2 === y) {
+    result = [x - 1];
+    return result;
+  }
 
-  return result;
+  if (x > y) {
+    result.push(x - 1);
+    return result.concat(range(x - 1, y));
+  }
+
+  if (x + 2 === y) {
+    result = [x + 1];
+    return result;
+  }
+
+  result.push(x + 1);
+  return result.concat(range(x + 1, y));
 };
 
 // 7. Compute the exponent of a number.
