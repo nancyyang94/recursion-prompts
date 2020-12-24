@@ -7,10 +7,6 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
-    // input: numbers (including negative numbers)
-      // output: a number (product)
-      // constraints: negative input number will return null
-        // establish base case - final number remaining is 1
         if (n < 0) {
           return null;
         }
@@ -29,22 +25,14 @@ var factorial = function(n) {
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
-  // input: array of integers
-  // output: number (sum of all integers)
-  // constraints: should take negative and non-negative, should not mutate the input array
-  // should return 0 for empty array
 
   if (array.length === 0) {
     return 0;
   }
-  // base case
-   // we have only two items in the input array - return first item plus the second one
+
    if (array.length === 2) {
      return array[0] + array[1];
    }
-
-  // recursive case
-    // we have more than 2 items in the array. return the first item plus the sum of the remaining items in the array
   return array[0] + sum(array.slice(1));
 
 };
@@ -52,23 +40,19 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
-  if (array.length === 0) {
-    return 0;
-  }
+// base case: if item is primitive
+var sum = 0;
 
-  // if there is one and only one number left in the array, return that number
-  if (Array.isArray(array) === true && array.length === 1) {
-    return parseInt(array[0]);
-  }
+if (!Array.isArray(array)) {
+  return array;
+}
 
-  // if the current element a number just return that number
-  if (typeof array === 'number') {
-    return parseInt(array);
-  }
-  // if the first item in our input is NOT an array
-    // slice it then recurse
+// recursive case: if item is an array
+array.forEach(function(item) {
+  sum += arraySum(item);
+});
 
-  return parseInt(arraySum(array[0]) + arraySum(array.slice(1)));
+return sum;
 
 };
 
@@ -94,10 +78,6 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
-  // input: an integer
-  // output: an integer (sum)
-  // constraints: negative integers -
-
   if (n === 0) {
     return 0;
   }
@@ -114,8 +94,6 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
-  // input: two integers (x, y)
-  // output: an array of all integers within that range (NOT INCLUDING the min and max)
   var result = [];
 
   if (x === y) {
@@ -180,10 +158,6 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
-  // input: number
-  // output: boolean - true if power of two, false if not
-
-  // base case
   if (n === 1) {
     return true;
   }
@@ -192,7 +166,6 @@ var powerOfTwo = function(n) {
     return false;
   }
 
-  // recursive case
   return powerOfTwo(n / 2);
 };
 
@@ -221,7 +194,6 @@ var palindrome = function(string) {
     return true;
   }
 
-  // recursive case:
   var newString = string.slice(1, string.length - 1);
   return palindrome(newString);
 };
