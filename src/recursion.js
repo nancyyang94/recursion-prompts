@@ -277,6 +277,33 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+  // input: object - values can be nested objects or just values
+  // output: number - number of times a value occurs in an object
+
+  var count = 0;
+  // get array of object's values
+    // iterate over each item in the array (iterate over each value - either an object or primitive)
+      // if the current item is a primitive
+        // check to see if it matches the value passed, if so increase the count
+      // else (it's an object)
+        // get the array of the object's values, iterate through each value, check if item is primitive, etc.
+
+  if (obj === value) {
+     return 1;
+  }
+
+  if (typeof obj !== 'object' && obj !== value) {
+    return 0;
+  }
+
+  var values = Object.values(obj);
+  console.log(values);
+
+  values.forEach(function(item) {
+    count += countValuesInObj(item, value);
+  });
+
+  return count;
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
